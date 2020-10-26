@@ -419,25 +419,25 @@ export class BarChart implements IVisual {
             <ISelectionId[]>this.selectionManager.getSelectionIds()
         );
         let eventTypes = [
-        //"pointerover",
-        //"pointerenter",
+        "pointerover",
+        "pointerenter",
         "pointerdown",
-        //"pointermove",
+        // "pointermove",
         "pointerup",
         "pointercancel",
-        //"pointerout",
-        //"pointerleave",
+        "pointerout",
+        "pointerleave",
         "gotpointercapture",
         "lostpointercapture",
         "mousedown",
         "mouseup",
-        //"mousemove",
+        // "mousemove",
         "click",
         "dblclick",
         "mouseover",
-        //"mouseout",
-        //"mouseenter",
-        //"mouseleave",
+        "mouseout",
+        "mouseenter",
+        "mouseleave",
         "contextmenu",
         "contextmenuCustom",
         "touchcancel",
@@ -450,19 +450,17 @@ export class BarChart implements IVisual {
         this.barSelection
             .exit()
             .remove();
-        //this.handleClick(barSelectionMerged);
+        this.handleClick(barSelectionMerged);
     }
 
     private handleEvent(eventType: string, d: any) {
         console.log(eventType);
 
         let logs = this.logTextArea.text();
-        this.logTextArea.text(logs + '0.2 ' + eventType + "\r\n");
+        this.logTextArea.text(logs + '0.4 ' + eventType + "\r\n");
         this.logTextArea.node().scrollTop = this.logTextArea.node().scrollHeight;
 
     }
-
-    
 
     private static wordBreak(
         textNodes: Selection<any, SVGElement>,

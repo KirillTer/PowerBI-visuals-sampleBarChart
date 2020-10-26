@@ -34,7 +34,7 @@ export interface ITooltipServiceWrapper {
 
 }
 
-const DefaultHandleTouchDelay = 1000;
+const DefaultHandleTouchDelay = 500;
 
 export function createTooltipServiceWrapper(tooltipService: ITooltipService, rootElement: ContainerElement, selectionManager: ISelectionManager, handleTouchDelay: number = DefaultHandleTouchDelay): ITooltipServiceWrapper {
     return new TooltipServiceWrapper(tooltipService, rootElement, selectionManager, handleTouchDelay);
@@ -88,7 +88,7 @@ class TooltipServiceWrapper implements ITooltipServiceWrapper {
         });
         selection.on("mouseout.tooltip", () => {
             console.log('mouseout triggered');
-            this.visualHostTooltipService.hide({ isTouchEvent: false, immediately: false });
+            this.visualHostTooltipService.hide({ isTouchEvent: false, immediately: true });
         });
         selection.on("mousemove.tooltip", () => {
             //console.log('mouseout triggered');
@@ -133,7 +133,7 @@ class TooltipServiceWrapper implements ITooltipServiceWrapper {
     
                     console.log('CUSTOM contextmenu triggered');
                     
-                    this.visualHostTooltipService.hide({ isTouchEvent: true, immediately: true });
+                    // this.visualHostTooltipService.hide({ isTouchEvent: true, immediately: true });
     
                     this.visualHostTooltipService.show({
                         coordinates: tooltipEventArgs.coordinates,
@@ -166,7 +166,7 @@ class TooltipServiceWrapper implements ITooltipServiceWrapper {
     }
 
     public hide(): void {
-        this.visualHostTooltipService.hide({ immediately: true, isTouchEvent: false });
+        this.visualHostTooltipService.hide({ immediately: true, isTouchEvent: true });
     }
 
     private makeTooltipEventArgs<T>(rootNode: ContainerElement, isPointerEvent: boolean, isTouchEvent: boolean): TooltipEventArgs<T> {
