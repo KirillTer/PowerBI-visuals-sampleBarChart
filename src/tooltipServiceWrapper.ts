@@ -71,8 +71,8 @@ class TooltipServiceWrapper implements ITooltipServiceWrapper {
         selection.on("mouseover.tooltip", () => {
             console.log('mouseover triggered');
             // Ignore mouseover while handling touch events
-            //if (!this.canDisplayTooltip(d3Event))
-            //   return;
+            if (!this.canDisplayTooltip(d3Event))
+              return;
             let tooltipEventArgs = this.makeTooltipEventArgs<T>(rootNode, true, false);
             if (!tooltipEventArgs)
                 return;
@@ -123,12 +123,11 @@ class TooltipServiceWrapper implements ITooltipServiceWrapper {
                 }
                 let tooltipInfo = getTooltipInfoDelegate(tooltipEventArgs);
                 let selectionId = getDataPointIdentity(tooltipEventArgs);
-                /*
+
                 let target = <HTMLElement>(<Event>d3Event).target;
 
                 let event = new Event("contextmenu");
                 target.dispatchEvent(event);
-                */
 
                 this.handleTouchTimeoutId = setTimeout(() => {
     

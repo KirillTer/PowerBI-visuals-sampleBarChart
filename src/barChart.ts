@@ -457,7 +457,7 @@ export class BarChart implements IVisual {
         console.log(eventType);
 
         let logs = this.logTextArea.text();
-        this.logTextArea.text(logs + '0.1' + eventType + "\r\n");
+        this.logTextArea.text(logs + '0.2 ' + eventType + "\r\n");
         this.logTextArea.node().scrollTop = this.logTextArea.node().scrollHeight;
 
     }
